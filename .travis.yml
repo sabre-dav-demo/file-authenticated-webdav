@@ -56,9 +56,8 @@ script:
 - links -dump http://localhost:8000
 - elinks -dump-color-mode 4 -dump http://localhost:8000
 - |
-  cadaver http://localhost:8000 << EOT
-  user
-  user
+  # cadaver http://localhost:8000 << EOT
+  python cadaver-pexpect.py
   unset quiet
   pwd
   put LICENSE
