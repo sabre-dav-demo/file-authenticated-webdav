@@ -54,6 +54,8 @@ script:
 - elinks -dump-color-mode 4 -dump http://localhost:8000
 - |
   cadaver http://localhost:8000 <<- EOT
+    user
+    user
     unset quiet
     pwd
     put LICENSE
