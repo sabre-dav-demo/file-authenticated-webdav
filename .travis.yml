@@ -4,7 +4,7 @@ language: php
 addons:
   apt:
     packages:
-    - apache2-utils # htdigest
+    # - apache2-utils # htdigest
     - cadaver
     - links
     - elinks
