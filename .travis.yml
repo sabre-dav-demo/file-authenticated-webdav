@@ -53,21 +53,21 @@ script:
 - links -dump http://localhost:8000
 - elinks -dump-color-mode 4 -dump http://localhost:8000
 - |
-  cadaver http://localhost:8000 <<- EOT
-    user
-    user
-    unset quiet
-    pwd
-    put LICENSE
-    put README.md
-    put server.php
-    get LICENSE /dev/null
-    get README.md /dev/null
-    get server.php /dev/null
-    ls
-    delete server.php
-    ls
-    quit
+  cadaver http://localhost:8000 << EOT
+  user
+  user
+  unset quiet
+  pwd
+  put LICENSE
+  put README.md
+  put server.php
+  get LICENSE /dev/null
+  get README.md /dev/null
+  get server.php /dev/null
+  ls
+  delete server.php
+  ls
+  quit
   EOT
 
 
