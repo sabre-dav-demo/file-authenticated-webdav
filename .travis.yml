@@ -1,0 +1,80 @@
+---
+language: php
+
+addons:
+  apt:
+    packages:
+    - apache2-utils # htdigest
+    - cadaver
+    - links
+    - elinks
+
+cache:
+  directories:
+  - $HOME/.composer/cache/files
+
+matrix:
+  fast_finish: true
+  allow_failures:
+  - php: nightly
+
+
+before_install:
+- go get -u github.com/jingweno/ccat
+# - pip install --user pygments
+- wget https://github.com/travis-util/https-security-checker/archive/master.zip --output-document=- | jar xvf /dev/stdin
+- . https-security-checker-master/init-source.bash
+# Disabling Xdebug - Debugger and Profiler Tool for PHP
+- |
+  php -r "print_r(get_loaded_extensions(TRUE));"
+  if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
+    cat ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+    install --directory ~/.phpenv/versions/$(phpenv version-name)/etc/on-demand
+    mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ~/.phpenv/versions/$(phpenv version-name)/etc/on-demand
+    php -r "print_r(get_loaded_extensions(TRUE));"
+  fi
+
+
+install:
+- mkdir data
+- mkdir public
+- chmod a+rwx data public
+- composer require sabre/dav
+
+
+before_script:
+- curl_security_check composer.lock
+#^ This checks that the application doesn't use dependencies with known security vulnerabilities
+
+
+script:
+- php -S localhost:8000 server.php > /dev/null &
+- sleep 1
+- links -dump http://localhost:8000
+- elinks -dump-color-mode 4 -dump http://localhost:8000
+- |
+  cadaver http://localhost:8000 <<- EOT
+    unset quiet
+    pwd
+    put LICENSE
+    put README.md
+    put server.php
+    get LICENSE /dev/null
+    get README.md /dev/null
+    get server.php /dev/null
+    ls
+    delete server.php
+    ls
+    quit
+  EOT
+
+
+after_script:
+- ls --almost-all --color
+- ls --almost-all --color data
+- ls --almost-all --color public
+
+
+- composer show --latest
+- $GOPATH/bin/ccat composer.json
+- man htdigest
