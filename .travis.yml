@@ -8,6 +8,7 @@ addons:
     - cadaver
     - links
     - elinks
+    - w3m
 
 cache:
   directories:
@@ -51,6 +52,7 @@ script:
 - php -S localhost:8000 server.php > /dev/null &
 - sleep 1
 - curl --digest --user user:user http://localhost:8000 | elinks -force-html -dump-color-mode 4 -dump
+- curl --digest --user user:user http://localhost:8000 | w3m -dump -T text/html
 - links -dump http://localhost:8000
 - elinks -dump-color-mode 4 -dump http://localhost:8000
 - |
