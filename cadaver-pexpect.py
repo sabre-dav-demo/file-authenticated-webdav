@@ -36,15 +36,15 @@ import sys
 # unicode_literals makes all string literals in this script Unicode by default.
 child = pexpect.spawnu('cadaver http://localhost:8000')
 
-child.expect('(?i)username .*: ')
-child.sendline('user')
-child.expect('(?i)password')
-child.sendline('user')
+# child.expect('(?i)username .*: ')
+# child.sendline('user')
+# child.expect('(?i)password')
+# child.sendline('user')
 # child.expect('dav:/> ')
 # print("Escape character is '^]'.\n")
 sys.stdout.write (child.after)
 sys.stdout.flush()
-child.interact() # Escape character defaults to ^]
+# child.interact() # Escape character defaults to ^]
 # At this point this script blocks until the user presses the escape character
 # or until the child exits. The human user and the child should be talking
 # to each other now.
