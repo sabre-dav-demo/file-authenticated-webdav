@@ -50,7 +50,7 @@ before_script:
 script:
 - php -S localhost:8000 server.php > /dev/null &
 - sleep 1
-- curl --digest --user user:user http://localhost:8000
+- curl --digest --user user:user http://localhost:8000 | elinks -force-html -dump-color-mode 4 -dump
 - links -dump http://localhost:8000
 - elinks -dump-color-mode 4 -dump http://localhost:8000
 - |
