@@ -34,7 +34,8 @@ import sys
 # Note that, for Python 3 compatibility reasons, we are using spawnu and
 # importing unicode_literals (above). spawnu accepts Unicode input and
 # unicode_literals makes all string literals in this script Unicode by default.
-child = pexpect.spawnu('cadaver http://localhost:8000')
+# child = pexpect.spawnu('cadaver http://localhost:8000')
+child = pexpect.spawn('cadaver http://localhost:8000')
 child.logfile_read = sys.stdout
 # sys.stdout.write (child.before)
 # child.expect('(?i)username .*: ')
@@ -63,4 +64,5 @@ if child.isalive():
     print('Child did not exit gracefully.')
 else:
     print('Child exited gracefully.')
+print(child.exitstatus, child.signalstatus)
 
