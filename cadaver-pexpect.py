@@ -30,6 +30,7 @@ from __future__ import unicode_literals
 
 import pexpect
 import sys
+import time
 
 # Note that, for Python 3 compatibility reasons, we are using spawnu and
 # importing unicode_literals (above). spawnu accepts Unicode input and
@@ -57,6 +58,7 @@ child.logfile = sys.stdout
 
 # The rest is not strictly necessary. This just demonstrates a few functions.
 # This makes sure the child is dead; although it would be killed when Python exits.
+time.sleep(1)
 if child.isalive():
     child.sendline('quit') # Try to ask cadaver child to exit.
     child.close()
