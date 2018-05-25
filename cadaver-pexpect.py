@@ -40,6 +40,8 @@ child = pexpect.spawn('cadaver')
 # child.logfile_read = sys.stdout
 child.logfile = sys.stdout
 child.expect('dav:!> ')
+child.sendline('help')
+child.expect('dav:!> ')
 child.sendline('unset quiet')
 child.expect('dav:!> ')
 child.sendline('open http://localhost:8000')
