@@ -36,7 +36,8 @@ import sys
 # unicode_literals makes all string literals in this script Unicode by default.
 # child = pexpect.spawnu('cadaver http://localhost:8000')
 child = pexpect.spawn('cadaver http://localhost:8000')
-child.logfile_read = sys.stdout
+# child.logfile_read = sys.stdout
+child.logfile = sys.stdout
 # sys.stdout.write (child.before)
 # child.expect('(?i)username .*: ')
 # child.sendline('user')
