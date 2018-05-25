@@ -9,6 +9,7 @@ $server = new DAV\Server(new DAV\FS\Directory('public'));
 $server->setBaseUri('/');
 $server->addPlugin(new DAV\Locks\Plugin(new DAV\Locks\Backend\File('data/locks')));
 $server->addPlugin(new DAV\Browser\Plugin());
+$server->addPlugin(new DAV\Sync\Plugin());
 
 $authBackend = new Auth\Backend\File('htdigest');
 $authBackend->setRealm('SabreDAV');
