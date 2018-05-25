@@ -35,7 +35,8 @@ import sys
 # importing unicode_literals (above). spawnu accepts Unicode input and
 # unicode_literals makes all string literals in this script Unicode by default.
 child = pexpect.spawnu('cadaver http://localhost:8000')
-print child.before
+# print child.before
+sys.stdout.write (child.before)
 # child.expect('(?i)username .*: ')
 # child.sendline('user')
 # child.expect('(?i)password')
