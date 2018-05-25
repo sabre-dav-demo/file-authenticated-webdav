@@ -86,6 +86,8 @@ child.expect('dav:.* ')
 # This makes sure the child is dead; although it would be killed when Python exits.
 if child.isalive():
     child.sendline('quit') # Try to ask cadaver child to exit.
+    child.expect(pexpect.EOF)
+    # print(child.before)
     child.close()
 # Print the final state of the child. Normally isalive() should be FALSE.
 if child.isalive():
