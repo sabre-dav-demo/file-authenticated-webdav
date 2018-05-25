@@ -36,10 +36,13 @@ import time
 # importing unicode_literals (above). spawnu accepts Unicode input and
 # unicode_literals makes all string literals in this script Unicode by default.
 # child = pexpect.spawnu('cadaver http://localhost:8000')
-child = pexpect.spawn('cadaver http://localhost:8000')
+child = pexpect.spawn('cadaver')
 # child.logfile_read = sys.stdout
 child.logfile = sys.stdout
+child.expect('dav:!> ')
 child.sendline('unset quiet')
+child.expect('dav:!> ')
+child.sendline('open http://localhost:8000')
 # sys.stdout.write (child.before)
 # child.expect('(?i)username .*: ')
 # child.sendline('user')
