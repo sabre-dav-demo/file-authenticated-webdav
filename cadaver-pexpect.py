@@ -10,7 +10,7 @@ PEXPECT LICENSE
     This license is approved by the OSI and FSF as GPL-compatible.
         http://opensource.org/licenses/isc-license.txt
 
-    Copyright (c) 2012, Noah Spurrier <noah@noah.org>
+    Copyright (c) 2012, Noah Spurrier <noah@noah.org>, Modified 2018 Jean-Bernard Addor
     PERMISSION TO USE, COPY, MODIFY, AND/OR DISTRIBUTE THIS SOFTWARE FOR ANY
     PURPOSE WITH OR WITHOUT FEE IS HEREBY GRANTED, PROVIDED THAT THE ABOVE
     COPYRIGHT NOTICE AND THIS PERMISSION NOTICE APPEAR IN ALL COPIES.
@@ -36,8 +36,8 @@ import sys
 # unicode_literals makes all string literals in this script Unicode by default.
 # child = pexpect.spawnu('cadaver http://localhost:8000')
 child = pexpect.spawn('cadaver')
-# child.logfile_read = sys.stdout
-child.logfile = sys.stdout
+# child.logfile = sys.stdout
+child.logfile_read = sys.stdout
 child.expect('dav:!> ')
 child.sendline('help')
 child.expect('dav:!> ')
@@ -66,11 +66,6 @@ child.expect('dav:.* ')
 child.sendline('delete server.php')
 child.expect('dav:.* ')
 # sys.stdout.write (child.before)
-# child.expect('(?i)username .*: ')
-# child.sendline('user')
-# child.expect('(?i)password')
-# child.sendline('user')
-# child.expect('dav:/> ')
 # print("Escape character is '^]'.\n")
 # sys.stdout.write (child.after)
 # sys.stdout.flush()
