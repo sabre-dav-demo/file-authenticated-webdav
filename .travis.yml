@@ -56,7 +56,11 @@ script:
 - curl --digest --user user:user http://localhost:8000 | w3m -dump -T text/html # w3m can also list links
 - links -dump http://localhost:8000
 - elinks -dump-color-mode 4 -dump http://localhost:8000
-- python cadaver-pexpect.py
+- |
+  python cadaver-pexpect.py << EOT
+  pwd
+  !
+  EOT
   # cadaver http://localhost:8000 << EOT
   # unset quiet
   # pwd
