@@ -30,7 +30,6 @@ from __future__ import unicode_literals
 
 import pexpect
 import sys
-import time
 
 # Note that, for Python 3 compatibility reasons, we are using spawnu and
 # importing unicode_literals (above). spawnu accepts Unicode input and
@@ -45,6 +44,27 @@ child.expect('dav:!> ')
 child.sendline('unset quiet')
 child.expect('dav:!> ')
 child.sendline('open http://localhost:8000')
+child.expect('Username: ')
+child.sendline('user')
+child.expect('Password: ')
+child.sendline('user')
+child.expect('dav:.* ')
+child.sendline('pwd')
+child.expect('dav:.* ')
+child.sendline('put LICENSE')
+child.expect('dav:.* ')
+child.sendline('put README.md')
+child.expect('dav:.* ')
+child.sendline('put server.php')
+child.expect('dav:.* ')
+child.sendline('get LICENSE /dev/null')
+child.expect('dav:.* ')
+child.sendline('get README.md /dev/null')
+child.expect('dav:.* ')
+child.sendline('get server.php /dev/null')
+child.expect('dav:.* ')
+child.sendline('delete server.php')
+child.expect('dav:.* ')
 # sys.stdout.write (child.before)
 # child.expect('(?i)username .*: ')
 # child.sendline('user')
@@ -64,7 +84,6 @@ child.sendline('open http://localhost:8000')
 
 # The rest is not strictly necessary. This just demonstrates a few functions.
 # This makes sure the child is dead; although it would be killed when Python exits.
-time.sleep(3)
 if child.isalive():
     child.sendline('quit') # Try to ask cadaver child to exit.
     child.close()
