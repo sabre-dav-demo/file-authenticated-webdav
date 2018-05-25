@@ -69,7 +69,7 @@ child.expect('dav:.* ')
 # print("Escape character is '^]'.\n")
 # sys.stdout.write (child.after)
 # sys.stdout.flush()
-child.interact(escape_character='!')
+# child.interact(escape_character='!') # Is there a way to use it in Travis? (It seems not to take piped input.)
 # Escape character defaults to ^]
 # At this point this script blocks until the user presses the escape character
 # or until the child exits. The human user and the child should be talking
