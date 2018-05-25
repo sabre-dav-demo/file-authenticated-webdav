@@ -8,7 +8,7 @@ addons:
     - cadaver
     - links
     - elinks
-    - w3m
+    # - w3m # is it really needed to upgrade the version of w3m?
 
 cache:
   directories:
