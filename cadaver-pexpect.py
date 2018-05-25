@@ -35,7 +35,7 @@ import sys
 # importing unicode_literals (above). spawnu accepts Unicode input and
 # unicode_literals makes all string literals in this script Unicode by default.
 child = pexpect.spawnu('cadaver http://localhost:8000')
-
+print child.before
 # child.expect('(?i)username .*: ')
 # child.sendline('user')
 # child.expect('(?i)password')
@@ -50,7 +50,7 @@ child = pexpect.spawnu('cadaver http://localhost:8000')
 # to each other now.
 
 # At this point the script is running again.
-print('Left interactve mode.')
+# print('Left interactve mode.')
 
 # The rest is not strictly necessary. This just demonstrates a few functions.
 # This makes sure the child is dead; although it would be killed when Python exits.
