@@ -39,6 +39,7 @@ import time
 child = pexpect.spawn('cadaver http://localhost:8000')
 # child.logfile_read = sys.stdout
 child.logfile = sys.stdout
+child.sendline('unset quiet')
 # sys.stdout.write (child.before)
 # child.expect('(?i)username .*: ')
 # child.sendline('user')
