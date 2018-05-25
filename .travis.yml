@@ -6,9 +6,6 @@ addons:
     packages:
     # - apache2-utils # htdigest
     - cadaver
-    - links
-    - elinks
-    # - w3m # is it really needed to upgrade the version of w3m?
 
 cache:
   directories:
@@ -51,30 +48,9 @@ before_script:
 
 script:
 - php -S localhost:8000 server.php > /dev/null &
-- sleep 1
-- curl --digest --user user:user http://localhost:8000 | elinks -force-html -dump-color-mode 4 -dump
+- sleep 1 # or better check socket with ncat.
 - curl --digest --user user:user http://localhost:8000 | w3m -dump -T text/html # w3m can also list links
-- links -dump http://localhost:8000
-- elinks -dump-color-mode 4 -dump http://localhost:8000
-- |
-  python cadaver-pexpect.py << EOT
-  pwd
-  !
-  EOT
-  # cadaver http://localhost:8000 << EOT
-  # unset quiet
-  # pwd
-  # put LICENSE
-  # put README.md
-  # put server.php
-  # get LICENSE /dev/null
-  # get README.md /dev/null
-  # get server.php /dev/null
-  # ls
-  # delete server.php
-  # ls
-  # quit
-  # EOT
+- python cadaver-pexpect.py
 
 
 after_script:
