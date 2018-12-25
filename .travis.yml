@@ -45,7 +45,8 @@ install:
 - mkdir data
 - mkdir public
 - chmod a+rwx data public
-- composer require sabre/dav@alpha
+- composer init --stability=alpha
+- composer require sabre/dav
 
 
 before_script:
